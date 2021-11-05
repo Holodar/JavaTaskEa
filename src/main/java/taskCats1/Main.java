@@ -20,28 +20,28 @@ public class Main {
 
         public static void main(String[] args) {
 
-                List<Cats> catsList = new ArrayList<>();
-                catsList.add(new Cats("Tom", "male", 2));
-                catsList.add(new Cats("Ron", "male", 3));
-                catsList.add(new Cats("Lisa", "female", 4));
-                catsList.add(new Cats("Rita", "female", 4));
-                catsList.add(new Cats("Nina", "female", 5));
-                catsList.add(new Cats("Tor", "male", 3));
-                catsList.add(new Cats("Grom", "male", 7));
-                catsList.add(new Cats("Lola", "female", 8));
-                catsList.add(new Cats("Mila", "female", 9));
-                catsList.add(new Cats("Toma", "female", 12));
-                catsList.add(new Cats("Tina", "female", 8));
-                catsList.add(new Cats("Basya", "male", 8));
-                catsList.add(new Cats("Degan", "male", 6));
-                catsList.add(new Cats("Stan", "male", 9));
-                catsList.add(new Cats("Sotiva", "female", 11));
-                catsList.add(new Cats("Babls", "male", 12));
-                catsList.add(new Cats("Jon", "male", 13));
-                catsList.add(new Cats("Nik", "male", 15));
-                catsList.add(new Cats("Anna", "female", 1));
-                catsList.add(new Cats("Shtorm", "male", 5));
-                catsList.add(new Cats("Kyrt", "male", 4));
+                List<Cat> catList = new ArrayList<>();
+                catList.add(new Cat("Tom", "male", 2));
+                catList.add(new Cat("Ron", "male", 3));
+                catList.add(new Cat("Lisa", "female", 4));
+                catList.add(new Cat("Rita", "female", 4));
+                catList.add(new Cat("Nina", "female", 5));
+                catList.add(new Cat("Tor", "male", 3));
+                catList.add(new Cat("Grom", "male", 7));
+                catList.add(new Cat("Lola", "female", 8));
+                catList.add(new Cat("Mila", "female", 9));
+                catList.add(new Cat("Toma", "female", 12));
+                catList.add(new Cat("Tina", "female", 8));
+                catList.add(new Cat("Basya", "male", 8));
+                catList.add(new Cat("Degan", "male", 6));
+                catList.add(new Cat("Stan", "male", 9));
+                catList.add(new Cat("Sotiva", "female", 11));
+                catList.add(new Cat("Babls", "male", 12));
+                catList.add(new Cat("Jon", "male", 13));
+                catList.add(new Cat("Nik", "male", 15));
+                catList.add(new Cat("Anna", "female", 1));
+                catList.add(new Cat("Shtorm", "male", 5));
+                catList.add(new Cat("Kyrt", "male", 4));
 
 
 
@@ -86,34 +86,35 @@ public class Main {
 
         // ToDO: задание 1 : 1. нужно найти всех котов мужского пола и возрастом между 2 и 5 годами и получить коллекцию из этих котов.
 
-        public static List<Cats> genderAgeSelect(List<Cats> catsList) {
-                return catsList.stream()
+        public static List<Cat> genderAgeSelect(List<Cat> catList) {
+                return catList.stream()
                         .filter(x -> x.getGender().equals("male"))
                         .filter(age -> age.getAge() > 2 && age.getAge() < 5)
                         .collect(Collectors.toList());
 
         }
 
-        public static String toline (List<Cats> catsList){
+        public static String toline (List<Cat> catList){
                 // ToDO: 2. Через Stream API нужно создать строку, которая бы содержала имена котов, записанных через запятую
 
-                return catsList.stream()
-                        .map(Cats::getName)
+                return catList.stream()
+                        .map(Cat::getName)
                         .collect(Collectors.joining(", "));
         }
 
-        public Map<Integer, List<Cats>> toMap (List<Cats> catsList){
+        public Map<Integer, List<Cat>> toMap (List<Cat> catList){
                 //TodO 3. сгруппировать всех котов в мапу: Map<Integer, List<Cat>>, где Integer - это возраст котов и коллеккция котов, которые имеют этот возраст
 
-               return    catsList.stream()
-                        .collect(Collectors.groupingBy(Cats::getAge));
+               return    catList.stream()
+                        .collect(Collectors.groupingBy(Cat::getAge));
         }
 
-        public Optional<Cats> findName(List<Cats> catsList){
+        public Cat findByNameOrDefault (List<Cat> catList,Cat cat){
                 //Todo 4. через StreamApi найти кота, у которого имя начинается на "Meo" и взять певрого попавшегося, если такого не будет - выдать какого-то кота по-умолчанию.
-                return catsList.stream()
+                return catList.stream()
                         .filter(s-> s.getName().startsWith("Meo"))
-                        .findFirst();
+                        .findFirst()
+                        .orElse(cat);
 
 
         }

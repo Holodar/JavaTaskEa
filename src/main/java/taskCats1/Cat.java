@@ -1,6 +1,6 @@
 package taskCats1;
 
-public class Cats {
+public class Cat {
 
 
     private String name;
@@ -19,7 +19,7 @@ public class Cats {
         return age;
     }
 
-    public Cats(String name, String gender, int age) {
+    public Cat(String name, String gender, int age) {
         this.name = name;
         this.age = age;
         this.gender = gender;
